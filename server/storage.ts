@@ -1,5 +1,6 @@
 import { type DisasterEvent, type InsertDisasterEvent, type User, type InsertUser } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { MongoStorage, connectMongoDB } from "./mongodb";
 
 export interface IStorage {
   // User methods
@@ -212,4 +213,28 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+// Initialize MongoDB connection and use MongoStorage
+let storage: IStorage;
+
+const initializeStorage = async (): Promise<IStorage> => {
+  try {
+    await connectMongoDB();
+    storage = new MongoStorage();
+    console.log('✅ Using MongoDB storage');
+    return storage;
+  } catch (error) {
+    console.log('⚠️  Falling back to in-memory storage');
+    storage = new MemStorage();
+    return storage;
+  }
+};
+
+// Export a promise that resolves to the storage instance
+export const getStorage = (): IStorage => {
+  if (!storage) {
+    throw new Error('Storage not initialized. Call initializeStorage() first.');
+  }
+  return storage;
+};
+
+export { initializeStorage };

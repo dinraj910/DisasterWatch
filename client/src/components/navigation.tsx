@@ -17,7 +17,9 @@ export function Navigation() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <i className="fas fa-globe-americas text-2xl text-primary mr-3"></i>
+              <div className="h-8 w-8 mr-3 bg-gradient-to-br from-blue-600 via-red-500 to-blue-800 rounded-full flex items-center justify-center">
+                <i className="fas fa-globe text-white text-sm"></i>
+              </div>
               <h1 className="text-xl font-bold text-foreground">DisasterWatch</h1>
             </div>
             <div className="hidden md:ml-10 md:flex md:space-x-8">
@@ -35,9 +37,13 @@ export function Navigation() {
               }`}>
                 <i className="fas fa-history mr-2"></i>Past Events
               </Link>
-              <a href="#" className="border-transparent text-muted-foreground hover:border-border hover:text-foreground inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+              <Link href="/about" className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                isActive("/about") 
+                  ? "border-primary text-primary" 
+                  : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
+              }`}>
                 <i className="fas fa-info-circle mr-2"></i>About
-              </a>
+              </Link>
             </div>
           </div>
           

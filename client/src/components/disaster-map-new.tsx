@@ -82,7 +82,7 @@ export function DisasterMap({ events: propEvents, onEventClick, className = "", 
       });
 
       // Initialize map
-      if (!mapInstanceRef.current && mapRef.current) {
+      if (!mapInstanceRef.current) {
         mapInstanceRef.current = L.map(mapRef.current, {
           center: [20, 0],
           zoom: 2,
@@ -116,7 +116,7 @@ export function DisasterMap({ events: propEvents, onEventClick, className = "", 
 
       // Clear existing markers
       mapInstanceRef.current.eachLayer((layer: any) => {
-        if (layer._icon && layer._icon.classList.contains('custom-disaster-marker')) {
+        if (layer.options && layer.options.isCustomMarker) {
           mapInstanceRef.current.removeLayer(layer);
         }
       });
@@ -154,7 +154,8 @@ export function DisasterMap({ events: propEvents, onEventClick, className = "", 
 
           const marker = L.marker([event.location.lat, event.location.lon], {
             icon: customIcon,
-          } as any).addTo(mapInstanceRef.current);
+            isCustomMarker: true,
+          }).addTo(mapInstanceRef.current);
 
           // Add popup
           marker.bindPopup(`

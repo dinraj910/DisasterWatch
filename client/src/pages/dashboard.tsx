@@ -31,7 +31,9 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <div className="flex items-center">
-                <i className="fas fa-globe-americas text-2xl text-primary mr-3"></i>
+                <div className="h-12 w-12 mr-3 bg-gradient-to-br from-blue-600 via-red-500 to-blue-800 rounded-full flex items-center justify-center">
+                  <i className="fas fa-globe text-white text-lg"></i>
+                </div>
                 <h2 className="text-xl font-bold text-foreground">DisasterWatch</h2>
               </div>
               <p className="mt-4 text-muted-foreground text-sm">
