@@ -55,8 +55,8 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/disasterwatch.git
-cd disasterwatch
+git clone https://github.com/dinraj910/DisasterWatch.git
+cd DisasterWatch
 ```
 
 ### 2. Install Dependencies
