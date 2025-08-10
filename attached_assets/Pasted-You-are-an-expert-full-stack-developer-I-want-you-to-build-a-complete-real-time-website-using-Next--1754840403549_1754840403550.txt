@@ -1,0 +1,81 @@
+You are an expert full-stack developer. I want you to build a complete real-time website using Next.js and Tailwind CSS that displays natural disaster information in an elegant, modern, and user-attractive way.
+
+--- PROJECT DESCRIPTION ---
+The website should have the following key features:
+1. **Home Page (Live Disaster Dashboard)**
+   - Displays ongoing natural disaster events globally (storms, tornadoes, volcano eruptions, earthquakes, floods, etc.).
+   - Data should be updated in real-time using Socket.IO or WebSockets.
+   - Integrate a map (Leaflet.js or Mapbox) to show locations of current disasters with markers and tooltips.
+   - Show alerts with severity level and location-based filtering.
+   - Support both dark and light mode themes.
+
+2. **Past Events Page**
+   - Displays past disaster events with images, detailed explanations, and additional information.
+   - Data can be fetched from historical APIs (e.g., OpenFEMA, USGS, GDACS archives).
+   - Paginated and searchable.
+
+3. **Navigation Bar**
+   - Links to Home, Past Events, and About/Info page.
+   - Theme toggle button (dark/light).
+
+4. **Location Filtering**
+   - Allow users to filter live events based on country or region.
+   - Automatically detect user location using browser geolocation and show relevant alerts.
+
+--- DATA SOURCES ---
+Use the following free and reliable APIs:
+- USGS Earthquake API: https://earthquake.usgs.gov/fdsnws/event/1/
+- GDACS Global Disaster Feed: https://www.gdacs.org/rss.aspx
+- National Weather Service Alerts API: https://www.weather.gov/documentation/services-web-api
+- OpenFEMA API for historical disaster data: https://www.fema.gov/about/openfema/api
+(If any API has rate limits, fetch it server-side and cache the data in MongoDB, then serve it to the client.)
+
+--- REAL-TIME UPDATES ---
+- Use Socket.IO to push new events to clients without refreshing the page.
+- If API supports streaming, integrate it directly; otherwise, poll periodically and push updates.
+
+--- BACKEND LOGIC ---
+- Backend should aggregate data from multiple APIs.
+- If an API is rate-limited, fetch every few minutes, store in MongoDB, and serve to the frontend.
+- Directly use unlimited APIs for real-time display.
+- Provide API routes in Next.js to serve unified data to the frontend.
+
+--- DATABASE ---
+- Use MongoDB for caching API responses and storing historical events.
+- Schema Example:
+  {
+    eventType: String,
+    title: String,
+    description: String,
+    location: { lat: Number, lon: Number, country: String },
+    severity: String,
+    date: Date,
+    source: String,
+    imageUrl: String
+  }
+
+--- UI & STYLING ---
+- Use Tailwind CSS for styling.
+- The design should be modern, attractive, and responsive.
+- Dark and light mode toggle with smooth transitions.
+- Home page: grid or card layout for events, map at the top, live alert ticker.
+- Past Events page: card/grid layout with filters and search bar.
+
+--- DEPLOYMENT ---
+- Fully deployable on Vercel.
+- Use environment variables for API keys if needed.
+- MongoDB Atlas for the database.
+
+--- DELIVERABLES ---
+- Fully functional Next.js + Tailwind CSS website.
+- Backend API routes for data aggregation.
+- MongoDB integration for caching and past event storage.
+- Real-time updates with Socket.IO.
+- Fully responsive, modern, and user-attractive UI.
+
+--- NOTES ---
+- Avoid paid APIs.
+- Ensure all components are modular and reusable.
+- Code should be well-commented and clean.
+
+Build this entire project step-by-step with code, explaining the reasoning for each major decision.
