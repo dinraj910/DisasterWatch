@@ -345,6 +345,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       io.to(`location:${event.location.country}`).emit('locationEvent', event);
     }
   };
+  
+  // Health check endpoint for cron job monitoring
+  app.get("/", (req, res) => res.status(200).send("server is running!"));
+  
   // Get live events
   app.get("/api/events/live", async (req, res) => {
     try {
