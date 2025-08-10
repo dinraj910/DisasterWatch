@@ -224,6 +224,7 @@ const initializeStorage = async (): Promise<IStorage> => {
     return storage;
   } catch (error) {
     console.log('⚠️  Falling back to in-memory storage');
+    console.log('❌ MongoDB Error:', error);
     storage = new MemStorage();
     return storage;
   }
